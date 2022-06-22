@@ -1,0 +1,146 @@
+
+
+    <!DOCTYPE html PUBLIC "-//WAPFORUM//DTD XHTML Mobile 1.2//EN" "http://www.openmobilealliance.org/tech/DTD/xhtml-mobile12.dtd" Cache-Control:public;>
+    <html xml:lang="en" xmlns="http://www.w3.org/1999/xhtml">
+        <head>
+            <meta charset="utf-8"/>
+            <meta http-equiv="X-UA-Compatible" content="IE=edge"/>
+            <title>Best Videos, Games & Images | Just Hangout!</title>
+            <meta property="og:title" content="Letshangout" />
+            <meta property="og:type" content="games" /> 
+            <meta property="og:url" content="" />
+            <meta property="og:image" content="" />
+            <meta property="og:site_name" content="wootgames.com" />
+            <meta property="fb:app_id" content="756944658073420" />
+            <meta name="description" content="Never Get Bored! LetsHangout Is Your Premium Entertainment Hangout With Hundreds of Premium Videos & Games."/>
+            <meta name="keywords" content="play free online games, Casual games, best online games, free mobile games, play free games, free games online, free desktop games, free PC games, free android games, free ios games, iphone games, Arcade Games, Puzzle Games, Racing Games, Action Games, Sports Games, Match 3 Games, Shooting Games, Brainy Games, Soccer Games, Kids Games, Girls Games, Football Games, Cricket Games, Skill Games, Matching Games"/>
+
+            <meta name="author" content="nK"/>
+
+
+            <link rel="icon" type="image/png" href="http://tz.letshangout.in/assets/front/images/dark/icon.png"/>
+            <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"/>
+            <link rel="canonical" href="http://letshangout.in/en" />
+            <!-- START: Styles -->
+            <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:300,400,700"/>
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/bootstrap.min.css" />
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/flickity.min.css" />
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/magnific-popup.css" />
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/social-likes_flat.css"/>
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/settings.css"/>
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/layers.css"/>
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/navigation.css"/>
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/youplay.css"/>
+            <link rel="stylesheet" href="http://tz.letshangout.in/assets/front/css/custom.css"/>
+            <link rel="manifest" href="http://tz.letshangout.in/manifest.json"/>
+            <script src="http://tz.letshangout.in/assets/front/js/jquery.min.js"></script>
+            <script src="http://tz.letshangout.in/assets/front/js/jquery.validate.js"></script> 
+
+        </head>
+
+        <body data-role="none" data-enhance="false" class="ui-mobile-viewport" style="background-color: #10112d">
+            <div class="card" style="width: 100%;">
+                <img class="card-img-top" src="https://c4.wallpaperflare.com/wallpaper/59/652/934/fifa-germany-france-wallpaper-preview.jpg" alt="Subscribe" style="width: 100%;">
+                    <div class="card-body pt-5 pb-5">
+                        <p class="card-text text-center" >
+                            <div class="mb-3 text-center  pb-5 mb-5" id="moForm" style="display:yes;max-width:400px;margin:auto">
+                                <h5 class="card-title text-center pb-5">Enter Your 11 Digit Mobile Number (with ISD Code) To Subscribe (New User) OR To Play Games (Existing User)</h5>
+                                <!--<label for="mobileInput" class="form-label">Please Enter your mobile no.</label>-->
+                                <input type="text" class="form-control" id="mobileInput" placeholder="9687172XXXX" value=""/>
+
+                            </div>
+                            <div class="mb-3 text-center  pb-5 mt-5" id="subForm" >
+                                <button  type="submit" onclick=" return false;" class="btn btn-sm btn-success text-center m-2" id="dailyPackButton" >Subscribe</button><br/><br/>
+                                <!--<button   type="submit" onclick=" return false;" class="btn btn-lg btn-success text-center m-2" id="weeklyPackButton" >Click here to subscribe Weekly 1.0 OMR </button><br/><br/>-->
+                            </div>
+                        </p>
+                        <p class="card-text text-center" >
+                            <div class="mb-3 text-center  pb-5" id="otpForm" style="display:none;max-width:400px;margin:auto">
+                                <label for="OPTInput" class="form-label">OTP</label>
+                                <input type="text" class="form-control" id="otpInput" placeholder="XXXX"/>
+                                <div class="valid-feedback"> Please Enter OTP received on your mobile no.</div>
+                                <button  type="submit" onclick=" return false;" class="btn btn-lg btn-warning text-center m-2" id="verifyButton" >verify OTP </button><br/><br/>
+                            </div>
+                        </p>
+                        <h5 class="card-title text-center" >
+                            By Clicking On Subscribe, You Agree To Below Terms:<br/><br/><br/>
+                            Subscription Charges 250 Bz/Day + VAT<br/><br/>
+                            Service Will Be Auto-Renewed<br/><br/>
+                            Cancel Service Anytime, Send UNSUB to 92928<br/>
+                        </h5>
+                    </div>
+            </div>
+
+        </body>
+        <script>
+            $(document).ready(function () {
+
+                var packId = "";
+                $('#dailyPackButton').click(function () {
+                    subscribeInit("D");
+                });
+                $('#weeklyPackButton').click(function () {
+                    subscribeInit("W");
+                });
+                $('#verifyButton').click(function () {
+                    otpVerify(packId, $('#otpInput').val());
+                });
+                function otpVerify(pack) {
+                    $.ajax('/en/userotp/' + pack + '/' + $('#mobileInput').val() + '/' + $('#otpInput').val(), {
+                        dataType: 'json', // type of response data
+                        timeout: 5000, // timeout milliseconds
+                        async: false,
+                        cache: false,
+                        success: function (data, status, xhr) {
+                            if (data.result === true) {
+                                $('#otpForm').hide();
+                                $('#subForm').hide();
+                                $('#moForm').hide();
+                                //alert("Your Request Recieved!.");
+                                window.location.href = "/";
+                            } else if (data.result === true) {
+                                alert("Your Request Recieved, Again!");
+                                window.location.href = "/";
+                            } else if (data.result === true) {
+                                alert(data.message);
+                                window.location.href = "/";
+                            } else {
+                                alert(data.message);
+                            }
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            alert("Your Request not Registered!");
+                        }
+                    });
+                }
+                function subscribeInit(pack) {
+                    packId = pack;
+                    //alert('/en/userotp/' + pack + '/' + $('#mobileInput').val());
+                    $.ajax('/en/userotp/' + pack + '/' + $('#mobileInput').val(), {
+                        dataType: 'json', // type of response data
+                        timeout: 5000, // timeout milliseconds
+                        async: false,
+                        cache: false,
+                        success: function (data, status, xhr) {
+                            if (data.result === true) {
+                                $('#otpForm').show();
+                                $('#subForm').hide();
+                                $('#moForm').hide();
+                                alert("Your Request Recieved!.");
+
+                            } else if (data.result === true) {
+                                alert("Your Request Recieved, Again!");
+                                window.location.href = "/";
+                            } else {
+                                alert(data.message);
+                            }
+                        },
+                        error: function (jqXhr, textStatus, errorMessage) {
+                            alert("Your Request not Registered!");
+                        }
+                    });
+                }
+                });
+        </script>
+    </html>
+    <!-- AUTO-->
